@@ -1,0 +1,87 @@
+-bash-4.2$ gdb ./gdbtest
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-120.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/tsanevp/Tsanevp_CS5008SPRING2022/Lab04/gdbtest...done.
+(gdb) run
+Starting program: /home/tsanevp/Tsanevp_CS5008SPRING2022/Lab04/./gdbtest
+Hello, Big!
+Greetings, ID: 42
+Name: Lebowski, Big
+see ya later Big!
+Good bye, ID: 42
+Lebowski, Big
+[Inferior 1 (process 272339) exited normally]
+(gdb) break main
+Breakpoint 1 at 0x400611: file start.c, line 6.
+(gdb) run
+Starting program: /home/tsanevp/Tsanevp_CS5008SPRING2022/Lab04/./gdbtest
+
+Breakpoint 1, main () at start.c:6
+6           User user = {"Big", "Lebowski", 42};
+(gdb) next
+7           StandardGreeting(&user);
+(gdb) next
+Hello, Big!
+8           FormalGreeting(&user);
+(gdb) next
+Greetings, ID: 42
+Name: Lebowski, Big
+9           InformalGoodbye(&user);
+(gdb) next
+see ya later Big!
+10          FormalGoodbye(&user);
+(gdb) next
+Good bye, ID: 42
+Lebowski, Big
+12          return 0;
+(gdb) next
+13      }
+(gdb) c
+Continuing.
+[Inferior 1 (process 272723) exited normally]
+(gdb) break goodbye.c
+Function "goodbye.c" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) y
+Breakpoint 2 (goodbye.c) pending.
+(gdb) break StandardGreeting
+Breakpoint 3 at 0x400539: file greeting.c, line 5.
+(gdb) run
+Starting program: /home/tsanevp/Tsanevp_CS5008SPRING2022/Lab04/./gdbtest
+
+Breakpoint 1, main () at start.c:6
+6           User user = {"Big", "Lebowski", 42};
+(gdb) next
+7           StandardGreeting(&user);
+(gdb) next
+
+Breakpoint 3, StandardGreeting (user=0x7fffffffe060) at greeting.c:5
+5           printf("Hello, %s!\n", user->first_name);
+(gdb) next
+Hello, Big!
+6       }
+(gdb) next
+main () at start.c:8
+8           FormalGreeting(&user);
+(gdb) next
+Greetings, ID: 42
+Name: Lebowski, Big
+9           InformalGoodbye(&user);
+(gdb) next
+see ya later Big!
+10          FormalGoodbye(&user);
+(gdb) next
+Good bye, ID: 42
+Lebowski, Big
+12          return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 273755) exited normally]
+(gdb) q
+

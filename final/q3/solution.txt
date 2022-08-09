@@ -1,0 +1,20 @@
+- The given algorithim is a search algorithm that searches a binary tree usings a queue to determine if the some value is
+contained within the tree.
+
+- The way the algorithim works is first the binary tree containing some values is given, and an int number to search for
+within the tree. Then, a queue is created. The queue is created to hold a tree node AND its two children (if it has
+them). Thus, after the queue is created, the root node of the tree is added to the queue. Then, we go into a while loop
+that continues until the queue no longer holds any nodes. First, in the while loop, the first Node is dequed, and then
+the value at the node is compared to the int value we are searching for, if there is a match, the loop breaks and we
+have found out value, otherwise, the left and right child of the dequed Node are enqueued to the queue and the while
+loop then checks to see if the data of the left and right node matches the desired value, then their children are added
+if not. This loop continues till the value is found or all children are NULL and the queue size is 0. The queue is then
+    free'd and we return result. Result is ONLY true if the data at some node within the tree matches the value that we
+    are searching for.
+
+- This searching algorithm can be compared to a normal iterative search through an array. The reason being is that we
+are essentially searching each node 1 by 1 where in worst case, we have to search the entire tree to find the value. We
+are also moving top down, from node to node, similar to how in an array we move from index to index, and in worst case
+we have to traverse the entire index to find the value we are searching for. The queue in this case acts like our i
+index iterrator in a normal brute force array search where is gives us each node at each level to check before
+contining.
